@@ -1,7 +1,10 @@
 let playerScore = 0;
 let computerScore = 0;
 
-
+const consol = document.getElementById('console');
+const scoreBoard = document.getElementById('score-board')
+const picks = document.createElement('h1')
+const scores = document.createElement('h2');
 
 function compGuess(){
     let num = Math.floor(Math.random() * 3);
@@ -17,7 +20,8 @@ function compGuess(){
 
 function playRound(){
     compGuess1 = compGuess()
-    console.log('player: ', playerGuess,'   computer: ', compGuess1);
+    picks.textContent = `player picked ${playerGuess}, computer picked ${compGuess1}`
+    consol.appendChild(picks)
     if(playerGuess == 'rock' && compGuess1 == 'scissors'){
         ++playerScore;
     }else if (playerGuess == 'rock' && compGuess1 == 'paper'){
@@ -35,9 +39,20 @@ function playRound(){
     }else if (playerGuess == 'scissors' && compGuess1 == 'rock'){
         ++computerScore;
     }
-    
-    
-    
+    score()
+}
+
+function score(){
+
+    scores.textContent = `Player: ${playerScore}, computer: ${computerScore}`;
+    scoreBoard.appendChild(scores)
+    if(playerScore == 5){
+        scores.textContent = 'Player Wins!';
+
+    }else if(computerScore == 5){
+        scores.textContent = 'Computer Wins!';
+    }
+
 }
 
 
@@ -49,6 +64,7 @@ const scissorsbtn = document.querySelector('#scissors');
 rockbtn.addEventListener('click', () =>{
     playerGuess = "rock";
     playRound();
+
     console.log('player: ', playerScore,'   computer: ', computerScore);
 })
 

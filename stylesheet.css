@@ -1,0 +1,32 @@
+html{
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    display: flex;
+    min-height: 100%;
+    min-width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#buttons{
+    display: flex;
+    padding: 100px;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgrey;
+    border-radius: 10px;
+}
+
+#rock, #paper, #scissors{
+    height: 200px;
+    width: 200px;
+}
+
+img{
+    height: 200px;
+    width: 200px; 
+}
