@@ -15,63 +15,51 @@ function compGuess(){
 }
 
 
-function playRound(playerGuess, compGuess){
-    playerGuess = playerGuess.toLowerCase()
-    if (playerGuess === "rock"){
-        if (compGuess === "rock"){
-            return "You both guessed rock, it's a tie!";
-        }else if (compGuess === "paper"){
-            ++computerScore;
-            return "you guessed rock, the compter guessed paper, you lose!";
-            
-        }else{
-            ++playerScore;
-            return "You guessed rock, the computer guessed scissors, you win!";
-            
-        }
-    }else if (playerGuess === "paper"){
-        if (compGuess === "paper"){
-            return "You both guessed paper, it's a tie!";
-        }else if (compGuess === "scissors"){
-            ++computerScore;
-            return "You guessed paper, the compter guessed scissors, you lose!";
-            
-        }else{
-            ++playerScore;
-            return "You guessed paper, the computer guessed rock, you win!";
-          
-        }
-    }else if (playerGuess === "scissors"){
-        if (compGuess === "scissors"){
-            return "You both guessed scissors, it's a tie!";
-        }else if (compGuess === "rock"){
-            ++computerScore;
-            return "You guessed scissors, the computer guessed rock, you lose!";
-            
-        }else{
-            ++playerScore;
-            return "You guessed scissors, the computer guessed paper, you win!";
-            
-        }
-    }else{
-        return 'Please only guess "rock", "paper", or scissors"'
+function playRound(){
+    compGuess1 = compGuess()
+    console.log('player: ', playerGuess,'   computer: ', compGuess1);
+    if(playerGuess == 'rock' && compGuess1 == 'scissors'){
+        ++playerScore;
+    }else if (playerGuess == 'rock' && compGuess1 == 'paper'){
+        ++computerScore;
     }
-}
 
-function game(){
-    for (let i = 1; i <= 5; i++){
-        if (i <= 5){
-            const player = prompt('Please guess "rock", "paper", or "scissors".');
-            const comp = compGuess();;
-            console.log(playRound(player, comp));
-            console.log(`player: ${playerScore}, computer: ${computerScore}`)
-        }
-        
+    if(playerGuess == 'paper' && compGuess1 == 'rock'){
+        ++playerScore;
+    }else if (playerGuess == 'paper' && compGuess1 == 'scissors'){
+        ++computerScore;
     }
+
+    if(playerGuess == 'scissors' && compGuess1 == 'paper'){
+        ++playerScore;
+    }else if (playerGuess == 'scissors' && compGuess1 == 'rock'){
+        ++computerScore;
+    }
+    
+    
+    
 }
 
 
+const rockbtn = document.querySelector('#rock');
+const paperbtn = document.querySelector('#paper');
+const scissorsbtn = document.querySelector('#scissors');
 
-game()
 
+rockbtn.addEventListener('click', () =>{
+    playerGuess = "rock";
+    playRound();
+    console.log('player: ', playerScore,'   computer: ', computerScore);
+})
 
+paperbtn.addEventListener('click', () =>{
+    playerGuess = "paper";
+    playRound();
+    console.log('player: ', playerScore,'   computer: ', computerScore);
+})
+
+scissorsbtn.addEventListener('click', () =>{
+    playerGuess = "scissors";
+    playRound();
+    console.log('player: ', playerScore,'   computer: ', computerScore);
+})
